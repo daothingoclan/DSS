@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.gbInputParams = new System.Windows.Forms.GroupBox();
@@ -48,19 +49,21 @@
             this.lbPatterns = new System.Windows.Forms.ListBox();
             this.gbKohonen = new System.Windows.Forms.GroupBox();
             this.panelLegend = new System.Windows.Forms.Panel();
+            this.sofmVisualizer = new SOFMTest.SOFMVisualizer();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.lblStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.pbStatus = new System.Windows.Forms.ToolStripProgressBar();
             this.chbVisualization = new System.Windows.Forms.CheckBox();
             this.outputDataChart = new Steema.TeeChart.TChart();
-            this.inputDataChart = new Steema.TeeChart.TChart();
-            this.toolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.sofmVisualizer = new SOFMTest.SOFMVisualizer();
             this.points2 = new Steema.TeeChart.Styles.Points();
             this.points3 = new Steema.TeeChart.Styles.Points();
+            this.inputDataChart = new Steema.TeeChart.TChart();
             this.points1 = new Steema.TeeChart.Styles.Points();
             this.points4 = new Steema.TeeChart.Styles.Points();
+            this.toolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.lbItemsInGroup = new System.Windows.Forms.ListBox();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
@@ -267,14 +270,15 @@
             this.lbPatterns.FormattingEnabled = true;
             this.lbPatterns.Location = new System.Drawing.Point(3, 16);
             this.lbPatterns.Name = "lbPatterns";
-            this.lbPatterns.Size = new System.Drawing.Size(290, 379);
+            this.lbPatterns.Size = new System.Drawing.Size(290, 382);
             this.lbPatterns.TabIndex = 0;
-            this.lbPatterns.Leave += new System.EventHandler(this.lbPatterns_Leave);
             this.lbPatterns.SelectedIndexChanged += new System.EventHandler(this.lbPatterns_SelectedIndexChanged);
+            this.lbPatterns.Leave += new System.EventHandler(this.lbPatterns_Leave);
             // 
             // gbKohonen
             // 
             this.gbKohonen.AutoSize = true;
+            this.gbKohonen.Controls.Add(this.lbItemsInGroup);
             this.gbKohonen.Controls.Add(this.panelLegend);
             this.gbKohonen.Controls.Add(this.sofmVisualizer);
             this.gbKohonen.Controls.Add(this.statusStrip);
@@ -300,6 +304,16 @@
             this.panelLegend.Size = new System.Drawing.Size(2, 2);
             this.panelLegend.TabIndex = 5;
             this.panelLegend.Visible = false;
+            // 
+            // sofmVisualizer
+            // 
+            this.sofmVisualizer.Location = new System.Drawing.Point(412, 25);
+            this.sofmVisualizer.Matrix = null;
+            this.sofmVisualizer.Name = "sofmVisualizer";
+            this.sofmVisualizer.Size = new System.Drawing.Size(225, 250);
+            this.sofmVisualizer.TabIndex = 4;
+            this.sofmVisualizer.ZoomFactor = 25;
+            this.sofmVisualizer.MouseClick += new System.Windows.Forms.MouseEventHandler(this.sofmVisualizer_MouseClick);
             // 
             // statusStrip
             // 
@@ -343,8 +357,8 @@
             // 
             // 
             // 
-            this.outputDataChart.Aspect.ElevationFloat = 345;
-            this.outputDataChart.Aspect.RotationFloat = 345;
+            this.outputDataChart.Aspect.ElevationFloat = 345D;
+            this.outputDataChart.Aspect.RotationFloat = 345D;
             this.outputDataChart.Aspect.View3D = false;
             // 
             // 
@@ -356,7 +370,7 @@
             // 
             // 
             // 
-            this.outputDataChart.Axes.Bottom.Grid.ZPosition = 0;
+            this.outputDataChart.Axes.Bottom.Grid.ZPosition = 0D;
             // 
             // 
             // 
@@ -392,7 +406,7 @@
             // 
             // 
             // 
-            this.outputDataChart.Axes.Depth.Grid.ZPosition = 0;
+            this.outputDataChart.Axes.Depth.Grid.ZPosition = 0D;
             // 
             // 
             // 
@@ -428,7 +442,7 @@
             // 
             // 
             // 
-            this.outputDataChart.Axes.DepthTop.Grid.ZPosition = 0;
+            this.outputDataChart.Axes.DepthTop.Grid.ZPosition = 0D;
             // 
             // 
             // 
@@ -464,7 +478,7 @@
             // 
             // 
             // 
-            this.outputDataChart.Axes.Left.Grid.ZPosition = 0;
+            this.outputDataChart.Axes.Left.Grid.ZPosition = 0D;
             // 
             // 
             // 
@@ -500,7 +514,7 @@
             // 
             // 
             // 
-            this.outputDataChart.Axes.Right.Grid.ZPosition = 0;
+            this.outputDataChart.Axes.Right.Grid.ZPosition = 0D;
             // 
             // 
             // 
@@ -537,7 +551,7 @@
             // 
             // 
             // 
-            this.outputDataChart.Axes.Top.Grid.ZPosition = 0;
+            this.outputDataChart.Axes.Top.Grid.ZPosition = 0D;
             // 
             // 
             // 
@@ -716,13 +730,125 @@
             // 
             this.outputDataChart.Walls.Right.Shadow.Visible = false;
             // 
+            // points2
+            // 
+            // 
+            // 
+            // 
+            this.points2.LinePen.Color = System.Drawing.Color.FromArgb(((int)(((byte)(77)))), ((int)(((byte)(77)))), ((int)(((byte)(153)))));
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            this.points2.Marks.Callout.ArrowHead = Steema.TeeChart.Styles.ArrowHeadStyles.None;
+            this.points2.Marks.Callout.ArrowHeadSize = 8;
+            // 
+            // 
+            // 
+            this.points2.Marks.Callout.Brush.Color = System.Drawing.Color.Black;
+            this.points2.Marks.Callout.Distance = 0;
+            this.points2.Marks.Callout.Draw3D = false;
+            this.points2.Marks.Callout.Length = 0;
+            this.points2.Marks.Callout.Style = Steema.TeeChart.Styles.PointerStyles.Rectangle;
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            this.points2.Marks.Font.Shadow.Visible = false;
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            this.points2.Pointer.Brush.Color = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.points2.Pointer.Dark3D = false;
+            this.points2.Pointer.Draw3D = false;
+            this.points2.Pointer.HorizSize = 2;
+            // 
+            // 
+            // 
+            this.points2.Pointer.Pen.Color = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.points2.Pointer.Style = Steema.TeeChart.Styles.PointerStyles.Rectangle;
+            this.points2.Pointer.VertSize = 2;
+            this.points2.Pointer.Visible = true;
+            this.points2.Title = "point1";
+            // 
+            // 
+            // 
+            this.points2.XValues.DataMember = "X";
+            this.points2.XValues.Order = Steema.TeeChart.Styles.ValueListOrder.Ascending;
+            // 
+            // 
+            // 
+            this.points2.YValues.DataMember = "Y";
+            // 
+            // points3
+            // 
+            // 
+            // 
+            // 
+            this.points3.LinePen.Color = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(153)))), ((int)(((byte)(0)))));
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            this.points3.Marks.Callout.ArrowHead = Steema.TeeChart.Styles.ArrowHeadStyles.None;
+            this.points3.Marks.Callout.ArrowHeadSize = 8;
+            // 
+            // 
+            // 
+            this.points3.Marks.Callout.Brush.Color = System.Drawing.Color.Black;
+            this.points3.Marks.Callout.Distance = 0;
+            this.points3.Marks.Callout.Draw3D = false;
+            this.points3.Marks.Callout.Length = 0;
+            this.points3.Marks.Callout.Style = Steema.TeeChart.Styles.PointerStyles.Rectangle;
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            this.points3.Marks.Font.Shadow.Visible = false;
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            this.points3.Pointer.Brush.Color = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(0)))));
+            this.points3.Pointer.Draw3D = false;
+            // 
+            // 
+            // 
+            this.points3.Pointer.Pen.Color = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(128)))));
+            this.points3.Pointer.Pen.Transparency = 50;
+            this.points3.Pointer.Style = Steema.TeeChart.Styles.PointerStyles.Circle;
+            this.points3.Pointer.Visible = true;
+            this.points3.Title = "point2";
+            // 
+            // 
+            // 
+            this.points3.XValues.DataMember = "X";
+            this.points3.XValues.Order = Steema.TeeChart.Styles.ValueListOrder.Ascending;
+            // 
+            // 
+            // 
+            this.points3.YValues.DataMember = "Y";
+            // 
             // inputDataChart
             // 
             // 
             // 
             // 
-            this.inputDataChart.Aspect.ElevationFloat = 345;
-            this.inputDataChart.Aspect.RotationFloat = 345;
+            this.inputDataChart.Aspect.ElevationFloat = 345D;
+            this.inputDataChart.Aspect.RotationFloat = 345D;
             this.inputDataChart.Aspect.View3D = false;
             // 
             // 
@@ -734,7 +860,7 @@
             // 
             // 
             // 
-            this.inputDataChart.Axes.Bottom.Grid.ZPosition = 0;
+            this.inputDataChart.Axes.Bottom.Grid.ZPosition = 0D;
             // 
             // 
             // 
@@ -770,7 +896,7 @@
             // 
             // 
             // 
-            this.inputDataChart.Axes.Depth.Grid.ZPosition = 0;
+            this.inputDataChart.Axes.Depth.Grid.ZPosition = 0D;
             // 
             // 
             // 
@@ -806,7 +932,7 @@
             // 
             // 
             // 
-            this.inputDataChart.Axes.DepthTop.Grid.ZPosition = 0;
+            this.inputDataChart.Axes.DepthTop.Grid.ZPosition = 0D;
             // 
             // 
             // 
@@ -842,7 +968,7 @@
             // 
             // 
             // 
-            this.inputDataChart.Axes.Left.Grid.ZPosition = 0;
+            this.inputDataChart.Axes.Left.Grid.ZPosition = 0D;
             // 
             // 
             // 
@@ -878,7 +1004,7 @@
             // 
             // 
             // 
-            this.inputDataChart.Axes.Right.Grid.ZPosition = 0;
+            this.inputDataChart.Axes.Right.Grid.ZPosition = 0D;
             // 
             // 
             // 
@@ -915,7 +1041,7 @@
             // 
             // 
             // 
-            this.inputDataChart.Axes.Top.Grid.ZPosition = 0;
+            this.inputDataChart.Axes.Top.Grid.ZPosition = 0D;
             // 
             // 
             // 
@@ -1094,127 +1220,6 @@
             // 
             this.inputDataChart.Walls.Right.Shadow.Visible = false;
             // 
-            // sofmVisualizer
-            // 
-            this.sofmVisualizer.Location = new System.Drawing.Point(412, 25);
-            this.sofmVisualizer.Matrix = null;
-            this.sofmVisualizer.Name = "sofmVisualizer";
-            this.sofmVisualizer.Size = new System.Drawing.Size(225, 250);
-            this.sofmVisualizer.TabIndex = 4;
-            this.sofmVisualizer.ZoomFactor = 25;
-            // 
-            // points2
-            // 
-            // 
-            // 
-            // 
-            this.points2.LinePen.Color = System.Drawing.Color.FromArgb(((int)(((byte)(77)))), ((int)(((byte)(77)))), ((int)(((byte)(153)))));
-            // 
-            // 
-            // 
-            // 
-            // 
-            // 
-            this.points2.Marks.Callout.ArrowHead = Steema.TeeChart.Styles.ArrowHeadStyles.None;
-            this.points2.Marks.Callout.ArrowHeadSize = 8;
-            // 
-            // 
-            // 
-            this.points2.Marks.Callout.Brush.Color = System.Drawing.Color.Black;
-            this.points2.Marks.Callout.Distance = 0;
-            this.points2.Marks.Callout.Draw3D = false;
-            this.points2.Marks.Callout.Length = 0;
-            this.points2.Marks.Callout.Style = Steema.TeeChart.Styles.PointerStyles.Rectangle;
-            // 
-            // 
-            // 
-            // 
-            // 
-            // 
-            this.points2.Marks.Font.Shadow.Visible = false;
-            // 
-            // 
-            // 
-            // 
-            // 
-            // 
-            this.points2.Pointer.Brush.Color = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            this.points2.Pointer.Dark3D = false;
-            this.points2.Pointer.Draw3D = false;
-            this.points2.Pointer.HorizSize = 2;
-            // 
-            // 
-            // 
-            this.points2.Pointer.Pen.Color = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.points2.Pointer.Style = Steema.TeeChart.Styles.PointerStyles.Rectangle;
-            this.points2.Pointer.VertSize = 2;
-            this.points2.Pointer.Visible = true;
-            this.points2.Title = "point1";
-            // 
-            // 
-            // 
-            this.points2.XValues.DataMember = "X";
-            this.points2.XValues.Order = Steema.TeeChart.Styles.ValueListOrder.Ascending;
-            // 
-            // 
-            // 
-            this.points2.YValues.DataMember = "Y";
-            // 
-            // points3
-            // 
-            // 
-            // 
-            // 
-            this.points3.LinePen.Color = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(153)))), ((int)(((byte)(0)))));
-            // 
-            // 
-            // 
-            // 
-            // 
-            // 
-            this.points3.Marks.Callout.ArrowHead = Steema.TeeChart.Styles.ArrowHeadStyles.None;
-            this.points3.Marks.Callout.ArrowHeadSize = 8;
-            // 
-            // 
-            // 
-            this.points3.Marks.Callout.Brush.Color = System.Drawing.Color.Black;
-            this.points3.Marks.Callout.Distance = 0;
-            this.points3.Marks.Callout.Draw3D = false;
-            this.points3.Marks.Callout.Length = 0;
-            this.points3.Marks.Callout.Style = Steema.TeeChart.Styles.PointerStyles.Rectangle;
-            // 
-            // 
-            // 
-            // 
-            // 
-            // 
-            this.points3.Marks.Font.Shadow.Visible = false;
-            // 
-            // 
-            // 
-            // 
-            // 
-            // 
-            this.points3.Pointer.Brush.Color = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(0)))));
-            this.points3.Pointer.Draw3D = false;
-            // 
-            // 
-            // 
-            this.points3.Pointer.Pen.Color = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(128)))));
-            this.points3.Pointer.Pen.Transparency = 50;
-            this.points3.Pointer.Style = Steema.TeeChart.Styles.PointerStyles.Circle;
-            this.points3.Pointer.Visible = true;
-            this.points3.Title = "point2";
-            // 
-            // 
-            // 
-            this.points3.XValues.DataMember = "X";
-            this.points3.XValues.Order = Steema.TeeChart.Styles.ValueListOrder.Ascending;
-            // 
-            // 
-            // 
-            this.points3.YValues.DataMember = "Y";
-            // 
             // points1
             // 
             // 
@@ -1328,6 +1333,14 @@
             // 
             this.points4.YValues.DataMember = "Y";
             // 
+            // lbItemsInGroup
+            // 
+            this.lbItemsInGroup.FormattingEnabled = true;
+            this.lbItemsInGroup.Location = new System.Drawing.Point(412, 281);
+            this.lbItemsInGroup.Name = "lbItemsInGroup";
+            this.lbItemsInGroup.Size = new System.Drawing.Size(225, 251);
+            this.lbItemsInGroup.TabIndex = 6;
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1341,6 +1354,7 @@
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             this.splitContainer1.Panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             this.gbInputParams.ResumeLayout(false);
             this.gbInputParams.PerformLayout();
@@ -1386,6 +1400,7 @@
         private System.Windows.Forms.ToolTip toolTip;
         private SOFMVisualizer sofmVisualizer;
         private System.Windows.Forms.Panel panelLegend;
+        private System.Windows.Forms.ListBox lbItemsInGroup;
     }
 }
 

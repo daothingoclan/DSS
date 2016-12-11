@@ -55,6 +55,7 @@ namespace SOFMTest
             Neuron Winner = nn.FindWinner(nn.Patterns[lbPatterns.SelectedIndex]);
             outputDataChart.Series[1].Add(Winner.Weights[0], Winner.Weights[1]);
             sofmVisualizer.LightUpThePixel(Winner.Coordinate.X, Winner.Coordinate.Y);
+            LoadItemsInCell(Winner.Coordinate.X, Winner.Coordinate.Y);
         }
 
         private void AddLegend()
@@ -213,8 +214,8 @@ namespace SOFMTest
             OpenFileDialog ofd = new OpenFileDialog();
             if (ofd.ShowDialog() == DialogResult.OK)
             {
-                nn.ReadDataFromFile(ofd.FileName);
-                //nn.ReadDataFromExcelFile(ofd.FileName);
+                //nn.ReadDataFromFile(ofd.FileName);
+                nn.ReadDataFromExcelFile(ofd.FileName);
                 sofmVisualizer.Matrix = null;
                 panelLegend.Visible = false;
                 ShowInputPatternsOnChart();
@@ -233,6 +234,29 @@ namespace SOFMTest
                 pbStatus.Visible = false;
                 lblStatus.Text = "Ready";                
                 SwitchControls(true);
+            }
+        }
+
+        private void sofmVisualizer_MouseClick(object sender, MouseEventArgs e)
+        {
+            int i = (int)Math.Ceiling((decimal)(e.X / sofmVisualizer.ZoomFactor));
+            int j = (int)Math.Ceiling((decimal)(e.Y / sofmVisualizer.ZoomFactor));
+            LoadItemsInCell(i, j);
+        }
+
+        private void LoadItemsInCell(int i, int j)
+        {
+            Neuron n = nn.OutputLayer[i, j];
+            List<string> itemNames = n.ItemNames;
+            AddItemsIntoListbox(itemNames);
+        }
+
+        private void AddItemsIntoListbox(List<string> items)
+        {
+            lbItemsInGroup.Items.Clear();
+            foreach (var item in items)
+            {
+                lbItemsInGroup.Items.Add(item);
             }
         }
     }

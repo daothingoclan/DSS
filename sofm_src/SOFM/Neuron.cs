@@ -16,6 +16,8 @@ namespace SOFM
         private double tau1;
         private int tau2 = 1000;
 
+        private List<string> itemNames;
+
         private double h(Point winnerCoordinate, Functions f)
         {
             double result = 0;
@@ -74,6 +76,7 @@ namespace SOFM
             iteration = 1;
             this.sigma0 = sigma0;
             tau1 = 1000 / Math.Log(sigma0);
+            itemNames = new List<string>();
         }
 
         private double Alpha(int t)
@@ -107,6 +110,12 @@ namespace SOFM
         public int Iteration
         {
             get { return iteration; }
+        }
+
+        public List<string> ItemNames
+        {
+            get { return itemNames; }
+            set { itemNames = value; }
         }
         
         public Neuron(int x, int y, int sigma0)

@@ -168,7 +168,8 @@ namespace SOFM
 
             for (int i = 0; i < patterns.Count; i++)
             {
-               Neuron n = FindWinner(patterns[i]);
+                Neuron n = FindWinner(patterns[i]);
+                outputLayer[n.Coordinate.X, n.Coordinate.Y].ItemNames.Add(itemNames[i]);
                 colorMatrix[n.Coordinate.X,n.Coordinate.Y] = usedColors[existentClasses[classes[i]]-1];
             }
             return colorMatrix;
