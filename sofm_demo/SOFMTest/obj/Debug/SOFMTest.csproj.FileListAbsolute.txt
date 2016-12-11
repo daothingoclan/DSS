@@ -1,0 +1,14 @@
+F:\Cao hoc\Tai Lieu\3. He Ho Tro Ra Quyet Dinh\Do An\Source code\Final\DSS\sofm_demo\SOFMTest\bin\Debug\SOFMTest.exe.config
+F:\Cao hoc\Tai Lieu\3. He Ho Tro Ra Quyet Dinh\Do An\Source code\Final\DSS\sofm_demo\SOFMTest\obj\Debug\SOFMTest.csprojResolveAssemblyReference.cache
+F:\Cao hoc\Tai Lieu\3. He Ho Tro Ra Quyet Dinh\Do An\Source code\Final\DSS\sofm_demo\SOFMTest\obj\Debug\SOFMTest.frmMain.resources
+F:\Cao hoc\Tai Lieu\3. He Ho Tro Ra Quyet Dinh\Do An\Source code\Final\DSS\sofm_demo\SOFMTest\obj\Debug\SOFMTest.Properties.Resources.resources
+F:\Cao hoc\Tai Lieu\3. He Ho Tro Ra Quyet Dinh\Do An\Source code\Final\DSS\sofm_demo\SOFMTest\obj\Debug\SOFMTest.csproj.GenerateResource.Cache
+F:\Cao hoc\Tai Lieu\3. He Ho Tro Ra Quyet Dinh\Do An\Source code\Final\DSS\sofm_demo\SOFMTest\bin\Debug\SOFMTest.exe
+F:\Cao hoc\Tai Lieu\3. He Ho Tro Ra Quyet Dinh\Do An\Source code\Final\DSS\sofm_demo\SOFMTest\bin\Debug\SOFMTest.pdb
+F:\Cao hoc\Tai Lieu\3. He Ho Tro Ra Quyet Dinh\Do An\Source code\Final\DSS\sofm_demo\SOFMTest\bin\Debug\SOFM.dll
+F:\Cao hoc\Tai Lieu\3. He Ho Tro Ra Quyet Dinh\Do An\Source code\Final\DSS\sofm_demo\SOFMTest\bin\Debug\Excel.dll
+F:\Cao hoc\Tai Lieu\3. He Ho Tro Ra Quyet Dinh\Do An\Source code\Final\DSS\sofm_demo\SOFMTest\bin\Debug\SOFM.pdb
+F:\Cao hoc\Tai Lieu\3. He Ho Tro Ra Quyet Dinh\Do An\Source code\Final\DSS\sofm_demo\SOFMTest\bin\Debug\TeeChart.Lite.xml
+F:\Cao hoc\Tai Lieu\3. He Ho Tro Ra Quyet Dinh\Do An\Source code\Final\DSS\sofm_demo\SOFMTest\bin\Debug\Excel.xml
+F:\Cao hoc\Tai Lieu\3. He Ho Tro Ra Quyet Dinh\Do An\Source code\Final\DSS\sofm_demo\SOFMTest\obj\Debug\SOFMTest.exe
+F:\Cao hoc\Tai Lieu\3. He Ho Tro Ra Quyet Dinh\Do An\Source code\Final\DSS\sofm_demo\SOFMTest\obj\Debug\SOFMTest.pdb
