@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.IO;
+using Excel;
 
 namespace SOFM
 {
@@ -22,6 +23,7 @@ namespace SOFM
         private int numberOfPatterns;
         private List<List<double>> patterns;
         private List<string> classes;
+        private List<string> itemNames;
         private SortedList<string, int> existentClasses;
         private List<System.Drawing.Color> usedColors;
         private bool normalize;
@@ -85,6 +87,11 @@ namespace SOFM
         public List<string> Classes
         {
             get { return classes; }
+        }
+
+        public List<string> ItemNames
+        {
+            get { return itemNames; }
         }
 
         public int InputLayerDimension
@@ -283,6 +290,67 @@ namespace SOFM
                 classes.Add(line.Substring(startPos));
                 line = sr.ReadLine();
             }
+        }
+
+        public void ReadDataFromExcelFile(string inputDataFileName)
+        {
+            var rowNo = 0;
+            int sigma0 = outputLayerDimension;
+
+            foreach (var worksheet in Workbook.Worksheets(inputDataFileName))
+            {
+                var numberOfRows = worksheet.Rows.Length - 2;
+                patterns = new List<List<double>>(numberOfRows);
+                classes = new List<string>(numberOfRows);
+                itemNames = new List<string>(numberOfRows);
+                numberOfPatterns = numberOfRows;
+
+                List<double> pattern = null;
+                foreach (var row in worksheet.Rows)
+                {
+                    rowNo++;
+                    if (rowNo == 1)
+                    {
+                        inputLayerDimension = (int)row.Cells[0].Amount;
+                    }
+                    else if (rowNo > 2)
+                    {
+                        pattern = new List<double>(inputLayerDimension);
+                        itemNames.Add(row.Cells[0].Text);
+
+                        var cellNo = 0;
+                        foreach (var cell in row.Cells)
+                        {
+                            cellNo++;
+                            if (cell != null && cell.IsAmount) pattern.Add(cell.Amount);
+                            if (cellNo == row.Cells.Length && !cell.IsAmount) classes.Add(cell.Text);
+                        }
+
+                        if (normalize) NormalizeInputPattern(pattern);
+                        patterns.Add(pattern);
+                    }
+                }
+            }
+
+            InitOutputLayerData();
+        }
+
+        private void InitOutputLayerData()
+        {
+            int sigma0 = outputLayerDimension;
+
+            outputLayer = new Neuron[outputLayerDimension, outputLayerDimension];
+            Random r = new Random();
+            for (int i = 0; i < outputLayerDimension; i++)
+                for (int j = 0; j < outputLayerDimension; j++)
+                {
+                    outputLayer[i, j] = new Neuron(i, j, sigma0);
+                    outputLayer[i, j].Weights = new List<double>(inputLayerDimension);
+                    for (int k = 0; k < inputLayerDimension; k++)
+                    {
+                        outputLayer[i, j].Weights.Add(r.NextDouble());
+                    }
+                }
         }
 
         public event EndEpochEventHandler EndEpochEvent;
